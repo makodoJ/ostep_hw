@@ -26,3 +26,33 @@ Questions
     ==28464== HEAP SUMMARY:
     ==28464==     in use at exit: 13,753 bytes in 160 blocks
     ==28464==   total heap usage: 174 allocs, 14 frees, 18,497 bytes allocated
+
+4.Write a simple program that allocates memory using malloc() but forgets to free it before exiting. What happens when this program runs? Can you use gdb to find any problems with it? How about valgrind (again with the --leak-check=yes flag)?
+  it runs fine
+  No
+  `==28489== Invalid write of size 4
+==28489==    at 0x100000F38: main (in ./data)
+==28489==  Address 0x10080e5e0 is 0 bytes after a block of size 400 alloc'd
+==28489==    at 0x100110635: malloc (in /usr/local/Cellar/valgrind/HEAD-adaae87/lib/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==28489==    by 0x100000F2F: main (in ./data)
+==28489== 
+==28489== Invalid read of size 4
+==28489==    at 0x100000F46: main (in ./data)
+==28489==  Address 0x10080e5e0 is 0 bytes after a block of size 400 alloc'd
+==28489==    at 0x100110635: malloc (in /usr/local/Cellar/valgrind/HEAD-adaae87/lib/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==28489==    by 0x100000F2F: main (in ./data)
+==28489== 
+0
+==28489== 
+==28489== HEAP SUMMARY:
+==28489==     in use at exit: 17,845 bytes in 160 blocks
+==28489==   total heap usage: 175 allocs, 15 frees, 22,989 bytes allocated
+==28489== 
+==28489== LEAK SUMMARY:
+==28489==    definitely lost: 0 bytes in 0 blocks
+==28489==    indirectly lost: 0 bytes in 0 blocks
+==28489==      possibly lost: 0 bytes in 0 blocks
+==28489==    still reachable: 0 bytes in 0 blocks
+==28489==         suppressed: 17,845 bytes in 160 blocks
+==28489== 
+
