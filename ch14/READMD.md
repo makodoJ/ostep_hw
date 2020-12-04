@@ -53,4 +53,26 @@ Questions
 ==28489==    indirectly lost: 0 bytes in 0 blocks
 ==28489==      possibly lost: 0 bytes in 0 blocks
 ==28489==    still reachable: 0 bytes in 0 blocks
-==28489==         suppressed: 17,845 bytes in 160 blocks`
+==28489==         suppressed: 17,845 bytes in 160 blocks`\
+6.Create a program that allocates an array of integers (as above), frees them, and then tries to print the value of one of the elements of the array. Does the program run? What happens when you use valgrind on it?\
+
+it runs well
+
+`==28589== Invalid read of size 4`\
+`==28589==    at 0x100000F46: main (in ./free_print)`\
+`==28589==  Address 0x10080e450 is 0 bytes inside a block of size 40 free'd`\
+
+7.Now pass a funny value to free (e.g., a pointer in the middle of the array you allocated above). What happens? Do you need tools to find this type of problem?
+
+`funny_free_print.c:13:10: warning: incompatible integer to pointer conversion`\
+      `passing 'int' to parameter of type 'void *' [-Wint-conversion]`\
+    `free(array[5]);`\
+    
+    ==28615== Invalid free() / delete / delete[] / realloc()
+    ==28615==    at 0x100110A0D: free (in /usr/local/Cellar/valgrind/HEAD-adaae87/lib/valgrind/vgpreload_memcheck-amd64-darwin.so)
+    ==28615==    by 0x100000F2D: main (in ./funny_free_print)
+    ==28615==  Address 0x5 is not stack'd, malloc'd or (recently) free'd
+    
+8.Try out some of the other interfaces to memory allocation. For example, create a simple vector-like data structure and related routines that use realloc() to manage the vector. Use an array to store the vectors elements; when a user adds an entry to the vector, use realloc() to allocate more space for it. How well does such a vector perform? How does it compare to a linked list? Use valgrind to help you find bugs.
+
+
