@@ -15,6 +15,14 @@ Questions
     `main(argc=1, argv=0x00007ffeefbff9c0) at null.c:11:20`\
     `-> 11  	    printf("%d\n", *p_int);`\
 3.Finally, use the valgrind tool on this program. We’ll use the memcheck tool that is a part of valgrind to analyze what happens. Run this by typing in the following: valgrind --leak-check=yes null. What happens when you run this? Can you interpret the output from the tool?
-    ==28464== Invalid read of size 4
+    `==28464== Invalid read of size 4`\
+    `==28464==    at 0x100000F45: main (null.c:11)`\
+    `==28464==  Address 0x0 is not stack'd, malloc'd or (recently) free'd`\
+    
+    ==28464== Process terminating with default action of signal 11 (SIGSEGV)
+    ==28464==  Access not within mapped region at address 0x0
     ==28464==    at 0x100000F45: main (null.c:11)
-    ==28464==  Address 0x0 is not stack'd, malloc'd or (recently) free'd
+    
+    ==28464== HEAP SUMMARY:
+    ==28464==     in use at exit: 13,753 bytes in 160 blocks
+    ==28464==   total heap usage: 174 allocs, 14 frees, 18,497 bytes allocated
