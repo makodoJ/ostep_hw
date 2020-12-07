@@ -50,4 +50,32 @@ Virtual Address Trace
   VA  3: 0x00000043 (decimal:   67) --> VALID: 0x00002317 (decimal: 8983)
   VA  4: 0x0000000d (decimal:   13) --> VALID: 0x000022e1 (decimal: 8929)
   ```
-3.
+2.Run with these flags: -s 0 -n 10. What value do you have set -l (the bounds register) to in order to ensure that all the generated virtual addresses are within bounds?
+```
+ARG seed 0
+ARG address space size 1k
+ARG phys mem size 16k
+
+Base-and-Bounds register information:
+
+  Base   : 0x00003082 (decimal 12418)
+  Limit  : 472
+
+Virtual Address Trace
+  VA  0: 0x000001ae (decimal:  430) --> VALID: 0x00003230 (decimal: 12848)
+  VA  1: 0x00000109 (decimal:  265) --> VALID: 0x0000318b (decimal: 12683)
+  VA  2: 0x0000020b (decimal:  523) --> SEGMENTATION VIOLATION
+  VA  3: 0x0000019e (decimal:  414) --> VALID: 0x00003220 (decimal: 12832)
+  VA  4: 0x00000322 (decimal:  802) --> SEGMENTATION VIOLATION
+  VA  5: 0x00000136 (decimal:  310) --> VALID: 0x000031b8 (decimal: 12728)
+  VA  6: 0x000001e8 (decimal:  488) --> SEGMENTATION VIOLATION
+  VA  7: 0x00000255 (decimal:  597) --> SEGMENTATION VIOLATION
+  VA  8: 0x000003a1 (decimal:  929) --> SEGMENTATION VIOLATION
+  VA  9: 0x00000204 (decimal:  516) --> SEGMENTATION VIOLATION
+  ```
+3.Run with these flags: -s 1 -n 10 -l 100. What is the maximum value that base can be set to, such that the address space still fits into physical memory in its entirety?
+  16 * 1024 - 100 = 16284
+
+4.Run some of the same problems above, but with larger address spaces (-a) and physical memories (-p).
+
+5.What fraction of randomly-generated virtual addresses are valid, as a function of the value of the bounds register? Make a graph from running with different random seeds, with limit values ranging from 0 up to the maximum size of the address space.
