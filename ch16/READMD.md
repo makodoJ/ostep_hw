@@ -9,6 +9,12 @@ segmentation.py -a 128 -p 512 -b 0 -l 20 -B 512 -L 20 -s 1
 segmentation.py -a 128 -p 512 -b 0 -l 20 -B 512 -L 20 -s 2
 ```
 which tells the program to generate virtual addresses for a 128-byte address space placed somewhere in a 512-byte physical memory. both segmentation-0 and segmentation-1's limits are 20. with segmentation-0's base 0, segmentation-1's base 128.  
+
+
 2.Now, let’s see if we understand this tiny address space we’ve constructed (using the parameters from the question above). What is the highest legal virtual address in segment 0? What about the lowest legal virtual address in segment 1? What are the lowest and highest illegal addresses in this entire address space? Finally, how would you run segmentation.py with the -A flag to test if you are right?  
-the highest legal virtual address in segment-0 : 19. 
-the lowest legal virtual address in segment-1 is :128 - 20 = 108. 
+
+
+the highest legal virtual address in segment-0 : 19
+
+the lowest legal virtual address in segment-1 is :128 - 20 = 108
+
