@@ -18,3 +18,20 @@ the highest legal virtual address in segment-0 : 19
 
 the lowest legal virtual address in segment-1 is :128 - 20 = 108
 
+segmentation-0's physical address:0 - 19
+
+segmentation-1's physical address:492 - 511
+
+the lowest illegal physical address:20
+
+the highest illegal phycical address:512
+
+```
+Virtual Address Trace
+  VA  0: 0x00000013 (decimal:   19) --> VALID in SEG0: 0x00000013 (decimal:   19)
+  VA  1: 0x0000006c (decimal:  108) --> VALID in SEG1: 0x000001ec (decimal:  492)
+  VA  2: 0x00000014 (decimal:   20) --> SEGMENTATION VIOLATION (SEG0)
+  VA  3: 0x0000006b (decimal:  107) --> SEGMENTATION VIOLATION (SEG1)
+  ```
+
+3.
