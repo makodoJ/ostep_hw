@@ -48,6 +48,6 @@ Virtual Address Trace
   VA  1: 0x0000026a (decimal:  618) --> SEGMENTATION VIOLATION
   VA  2: 0x00000280 (decimal:  640) --> SEGMENTATION VIOLATION
   VA  3: 0x00000043 (decimal:   67) --> VALID: 0x00002317 (decimal: 8983)
-  VA  4: 0x0000000d (decimal:   13) --> VALID: 0x000022e1 (decimal: 8929)```
-  
+  VA  4: 0x0000000d (decimal:   13) --> VALID: 0x000022e1 (decimal: 8929)
+  ```
 3.
