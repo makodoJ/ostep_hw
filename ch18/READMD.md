@@ -18,6 +18,12 @@ Then, to understand how linear page table size changes as page size grows:
 ./paging-linear-translate.py -P 4k -a 1m -p 512m -v -n 0
 ```
 
+Before running any of these, try to think about the expected trends. How should page-table size change as the address space grows? As the page size grows? Why shouldn’t we just use really big pages in general?
+
+page-table size = address space size / page size
+
+cost waste
+
 2.Now let’s do some translations. Start with some small examples, and change the number of pages that are allocated to the address space with the -u flag. For example:
 
 ```
@@ -28,6 +34,8 @@ Then, to understand how linear page table size changes as page size grows:
 ./paging-linear-translate.py -P 1k -a 16k -p 32k -v -u 100
 ```
 
+with -u increasing, more pages are vaild
+
 3.Now let’s try some different random seeds, and some different (and sometimes quite crazy) address-space parameters, for variety:
 
 ```
@@ -36,4 +44,11 @@ Then, to understand how linear page table size changes as page size grows:
 ./paging-linear-translate.py -P 1m -a 256m -p 512m -v -s 3
 ```
 
+the first is too small and thrid is too big
+
 4.Use the program to try out some other problems. Can you find the limits of where the program doesn’t work anymore? For example, what happens if the address-space size is bigger than physical memory?
+
+```
+./paging-linear-translate.py -p 0 -v -c
+Error: must specify a non-zero physical memory size.
+```
